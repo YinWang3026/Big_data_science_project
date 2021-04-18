@@ -115,21 +115,24 @@ public class App {
         for (Sentence sent : doc.sentences()) {  // Will iterate over two sentences
             // Models load when they are needed
             List<Token> tokens = sent.tokens();
-            // List<String> lemmas = sent.lemmas(); // Lemma is the word in dictionary, was => be
+            List<String> lemmas = sent.lemmas(); // Lemma is the word in dictionary, was => be
             List<String> pos = sent.posTags(); //Parts of speech
             List<String> ner = sent.nerTags(); // Name entity recognition
             String sentiment = sent.sentiment().toString(); // Positive Neutral Negative
 
-            if (tokens.size() != pos.size() && pos.size() != ner.size()) {
+            if (tokens.size() != pos.size() && pos.size() != lemmas.size() && lemmas.size() != ner.size()) {
                 System.out.println("FOUND MISMATCH");
                 continue;
             }
-            System.out.println("sentiment: " + sentiment);
-            // System.out.println("sent: " + sent.tokens().size());
-            // System.out.println("lemma: " + sent.lemmas().size());
-            // System.out.println("parse: " + sent.parse());
+            // System.out.println("sent: " + sent);
+            // System.out.println("lemma: " + lemmas);
+            // System.out.println("pos: " + pos);
+            // System.out.println("ner: " + ner);
+
+            // System.out.println("sentiment: " + sentiment);
+
             for (int i = 0; i < tokens.size(); i++) {
-                String word = tokens.get(i).word().toLowerCase();
+                String word = lemmas.get(i).toLowerCase();
                 //Not interested in stop words or characters
                 if (stopWords.contains(word) || word.length() <= 1) {
                     continue;
@@ -151,7 +154,7 @@ public class App {
                     if (i < tokens.size()-1) {
                         String pos1 = pos.get(i);
                         String pos2 = pos.get(i+1);
-                        String newWord = word + " " + tokens.get(i+1).word().toLowerCase();
+                        String newWord = word + " " + lemmas.get(i+1).toLowerCase();
 
                         // Adjective Noun - Ex. Fat Cat
                         if ((pos1.equals("JJ") || pos1.equals("JJR") || pos1.equals("JJS")) &&
