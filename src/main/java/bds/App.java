@@ -204,7 +204,6 @@ public class App {
             write_hashmap_to_file("nerLabels.txt", nerLabels);
             write_hashmap_to_file("nouns.txt", nouns);
             write_hashmap_to_file("nerner.txt", nerner);
-            write_hashmap_to_file("nerner.txt", nerner);
             write_hashmap_to_file("adj_nn.txt", pos_adj_nn);
             write_hashmap_to_file("pron_vb.txt", pos_pron_vb);
             write_hashmap_to_file("adv_vb.txt", pos_adv_vb);
