@@ -146,14 +146,8 @@ public class App {
                         count = nouns.containsKey(word) ? nouns.get(word) : 0;
                         nouns.put(word, count + 1);
                     }
-                    // Ner Ner - Ex. New York
-                    if ((i < tokens.size()-1) && ner.get(i).equals(ner.get(i+1))) {
-                        String newWord = word + " " + tokens.get(i+1).word().toLowerCase();
-                        count = nerner.containsKey(newWord) ? nerner.get(newWord) : 0;
-                        nerner.put(newWord, count + 1);
-                    }
 
-                    //Combinational PoS
+                    //Combinational
                     if (i < tokens.size()-1) {
                         String pos1 = pos.get(i);
                         String pos2 = pos.get(i+1);
@@ -177,13 +171,12 @@ public class App {
                             count = pos_adv_vb.containsKey(newWord) ? pos_adv_vb.get(newWord) : 0;
                             pos_adv_vb.put(newWord, count + 1);                          
                         }
+                        // Ner Ner - Ex. New York
+                        if (ner.get(i).equals(ner.get(i+1))) {
+                            count = nerner.containsKey(newWord) ? nerner.get(newWord) : 0;
+                            nerner.put(newWord, count + 1);
+                        }
                     }
-                  
-
-
-
-
-
                 }
             }
         }
