@@ -245,6 +245,7 @@ public class App {
             data_exploration(fakeFile, "fake", Mode.SENTIMENT);
             data_exploration(trueFile, "true", Mode.SENTIMENT);
             sentimentWriter.close();
+            System.out.println("Successfully wrote to: Sentiment.txt");
         } catch (IOException e) {
             System.out.printf("Cannot open file: %s\n", sentimentWriter);
             e.printStackTrace();
