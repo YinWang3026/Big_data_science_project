@@ -254,29 +254,36 @@ public class App {
         data_exploration(fakeFile, "fake", Mode.POS);
         data_exploration(trueFile, "true", Mode.POS);
         write_hashmap_to_file("posLabels.txt", posLabels);
+        posLabels.clear();
 
         data_exploration(fakeFile, "fake", Mode.NER);
         data_exploration(trueFile, "true", Mode.NER);
         write_hashmap_to_file("nerLabels.txt", nerLabels);
+        nerLabels.clear();
 
         data_exploration(fakeFile, "fake", Mode.NOUNS);
         data_exploration(trueFile, "true", Mode.NOUNS);
         write_hashmap_to_file("nouns.txt", nouns);
+        nouns.clear();
 
         data_exploration(fakeFile, "fake", Mode.NERNER);
         data_exploration(trueFile, "true", Mode.NERNER);
         write_hashmap_to_file("nerner.txt", nerner);
+        nerner.clear();
 
         data_exploration(fakeFile, "fake", Mode.ADJ_NN);
         data_exploration(trueFile, "true", Mode.ADJ_NN);
         write_hashmap_to_file("adj_nn.txt", pos_adj_nn);
+        pos_adj_nn.clear();
 
         data_exploration(fakeFile, "fake", Mode.PRON_VB);
         data_exploration(trueFile, "true", Mode.PRON_VB);
         write_hashmap_to_file("pron_vb.txt", pos_pron_vb);
+        pos_pron_vb.clear();
 
         data_exploration(fakeFile, "fake", Mode.ADV_VB);
         data_exploration(trueFile, "true", Mode.ADV_VB);
         write_hashmap_to_file("adv_vb.txt", pos_adv_vb);
+        pos_adv_vb.clear();
     }
 }
