@@ -180,6 +180,7 @@ public class keyword_select {
             temp = Double.valueOf(counter.get(i)) / Double.valueOf(counter.get(0));
             row[1+i] = temp.toString();
         }
+        System.out.println(Arrays.toString(row));
         file_writer.writeNext(row);
     }
 
@@ -196,8 +197,8 @@ public class keyword_select {
         try  {
             file_writer = new CSVWriter(new FileWriter(output));
             file_writer.writeNext(header);
-            data_exploration(fakeFile, "fake");
-            data_exploration(trueFile, "true");
+            data_exploration(fakeFile, "0");
+            data_exploration(trueFile, "1");
             file_writer.close();
             System.out.println("Successfully wrote to: " + output);
         } catch (IOException e) {
