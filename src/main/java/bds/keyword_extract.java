@@ -229,7 +229,9 @@ public class keyword_extract {
     }
 
     public static void main(String[] args) {
-        // [true/false] [fake file] [true file] 
+        // [fake file] [true file] 
+        System.out.println("Running Keyword_extract");
+
         if (args.length != 2){
             System.out.println("Invalid cmd line arguments.");
             return;

@@ -145,9 +145,6 @@ public class keyword_select {
                 //Combinational
                 if (i < tokens.size()-1) {
                     String newWord = word + " " + lemmas.get(i+1).toLowerCase();
-                    
-
-
                     if (newWord.equals("sexual harassment")){
                         counter.set(13, counter.get(13)+1);
                     } else if(newWord.equals("national security")) {
