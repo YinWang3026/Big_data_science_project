@@ -11,11 +11,9 @@ import com.opencsv.exceptions.CsvException;
 import java.util.*; // Properties, Hashmap
 import edu.stanford.nlp.simple.*; // NLP
 
-
-//Label generating only
 public class keyword_select {
     public static String characterFilter = "[^\\p{L}\\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}\\s]";
-    public static String output = "./output/result.csv";
+    public static String output = "./output/select_result.csv";
 
     public static String stopwords_file = "./data/stopwords.txt";
     public static Set<String> stopWords;
@@ -74,9 +72,10 @@ public class keyword_select {
         for (int i = 0; i< header.length-1; i++){
             counter.add(0);
         }
-      
+        Integer sentenceCount = 0;
         Document doc = new Document(line);
         for (Sentence sent : doc.sentences()) {  // Will iterate over two sentences
+            sentenceCount += 1;
             // Models load when they are needed
             List<Token> tokens = sent.tokens();
             List<String> lemmas = sent.lemmas(); // Lemma is the word in dictionary, was => be
@@ -147,9 +146,7 @@ public class keyword_select {
                 if (i < tokens.size()-1) {
                     String newWord = word + " " + lemmas.get(i+1).toLowerCase();
                     
-                      // {"Label", "Length", "NEGATIVE", "POSITIVE", "NEUTRAL", "ORGANIZATION", 
-                // "COUNTRY", "IDEOLOGY", "NNP/NNS", "JJ", "VB", "tax", "president", "russia", 
-                // "sexual harassment", "national security", "social media", "white house"};
+
 
                     if (newWord.equals("sexual harassment")){
                         counter.set(13, counter.get(13)+1);
@@ -163,19 +160,34 @@ public class keyword_select {
                 }
             }
         }
+
+        // {"Label", "Length", "NEGATIVE", "POSITIVE", "NEUTRAL", "ORGANIZATION", 
+        // "COUNTRY", "IDEOLOGY", "NNP/NNS", "JJ", "VB", "tax", "president", "russia", 
+        // "sexual harassment", "national security", "social media", "white house"};
         
         String[] row = new String[header.length];
+        Double temp;
         row[0] = correctness;
         row[1] = counter.get(0).toString();
-        for (int i = 1; i < counter.size(); i++){
-            Double temp = Double.valueOf(counter.get(i)) / Double.valueOf(counter.get(0));
+        
+        temp = Double.valueOf(counter.get(1)) / Double.valueOf(sentenceCount);
+        row[2] = temp.toString();
+        
+        temp = Double.valueOf(counter.get(2)) / Double.valueOf(sentenceCount);
+        row[3] = temp.toString();
+        
+        temp = Double.valueOf(counter.get(3)) / Double.valueOf(sentenceCount);
+        row[4] = temp.toString();
+        
+        for (int i = 4; i < counter.size(); i++){
+            temp = Double.valueOf(counter.get(i)) / Double.valueOf(counter.get(0));
             row[1+i] = temp.toString();
         }
         file_writer.writeNext(row);
     }
 
     public static void main(String[] args) {
-        // [true/false] [fake file] [true file] 
+        // [fake file] [true file] 
         System.out.println("Running Keyword_select");
         if (args.length != 2){
             System.out.println("Invalid cmd line arguments.");
