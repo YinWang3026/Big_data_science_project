@@ -13,7 +13,7 @@ import edu.stanford.nlp.simple.*; // NLP
 
 
 //Label generating only
-public class App {
+public class keyword_extract {
     // public static String delim = " |,|\"|=|%|^|&|\t|;|\\.|\\?|!|-|:|\\[|\\]|\\(|\\)|\\{|\\}|\\*|/";
     public static String characterFilter = "[^\\p{L}\\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}\\s]";
    
