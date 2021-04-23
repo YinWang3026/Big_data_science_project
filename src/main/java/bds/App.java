@@ -41,7 +41,7 @@ public class App {
         ADJ_NN,
         PRON_VB,
         ADV_VB,
-        SENTIMENT
+        // SENTIMENT
     }
 
     public static Set<String> add_to_set(String file_name){
@@ -110,30 +110,30 @@ public class App {
 
     public static void sentenceAnalyze(int lineNum, String line, Mode m) {
         Document doc = new Document(line);
-        int[] sentimentCounter = { 0, 0, 0};
+        // int[] sentimentCounter = { 0, 0, 0};
         for (Sentence sent : doc.sentences()) {  // Will iterate over two sentences
             // Models load when they are needed
             List<Token> tokens = sent.tokens();
             List<String> lemmas = sent.lemmas(); // Lemma is the word in dictionary, was => be
             List<String> pos = sent.posTags(); //Parts of speech
             List<String> ner = sent.nerTags(); // Name entity recognition
-            String sentiment = sent.sentiment().toString(); // Positive Neutral Negative
+            // String sentiment = sent.sentiment().toString(); // Positive Neutral Negative
 
-            if (m == Mode.SENTIMENT) {
-                // System.out.println("Sentiment: " + sentiment);
-                switch (sentiment) {
-                    case "POSITIVE":
-                        sentimentCounter[0] += 1;
-                        break;
-                    case "NEGATIVE":
-                        sentimentCounter[1] += 1;
-                        break;
-                    case "NEUTRAL":
-                        sentimentCounter[2] += 1;
-                        break;
-                }
-                continue;
-            }
+            // if (m == Mode.SENTIMENT) {
+            //     // System.out.println("Sentiment: " + sentiment);
+            //     switch (sentiment) {
+            //         case "POSITIVE":
+            //             sentimentCounter[0] += 1;
+            //             break;
+            //         case "NEGATIVE":
+            //             sentimentCounter[1] += 1;
+            //             break;
+            //         case "NEUTRAL":
+            //             sentimentCounter[2] += 1;
+            //             break;
+            //     }
+            //     continue;
+            // }
 
             if (tokens.size() != pos.size() && pos.size() != lemmas.size() && lemmas.size() != ner.size()) {
                 System.out.println("FOUND MISMATCH");
@@ -218,14 +218,14 @@ public class App {
             }
         }
         
-        if (m == Mode.SENTIMENT) {
-            try {
-                sentimentWriter.write(lineNum + "," + sentimentCounter[0] + "," + sentimentCounter[1] + "," + sentimentCounter[2] + "\n");
-            } catch (IOException e) {
-                System.out.println("Write to file failed: Sentiment.txt");
-                e.printStackTrace();            
-            }
-        }
+        // if (m == Mode.SENTIMENT) {
+        //     try {
+        //         sentimentWriter.write(lineNum + "," + sentimentCounter[0] + "," + sentimentCounter[1] + "," + sentimentCounter[2] + "\n");
+        //     } catch (IOException e) {
+        //         System.out.println("Write to file failed: Sentiment.txt");
+        //         e.printStackTrace();            
+        //     }
+        // }
     }
 
     public static void main(String[] args) {
@@ -239,51 +239,51 @@ public class App {
         String fakeFile = args[0];
         String trueFile = args[1];
 
-        try  {
-            sentimentWriter = new FileWriter(output+"sentiment.txt");
-            sentimentWriter.write("Article, Positive, Negative, Neutral\n");
-            data_exploration(fakeFile, "fake", Mode.SENTIMENT);
-            data_exploration(trueFile, "true", Mode.SENTIMENT);
-            sentimentWriter.close();
-            System.out.println("Successfully wrote to: Sentiment.txt");
-        } catch (IOException e) {
-            System.out.printf("Cannot open file: %s\n", sentimentWriter);
-            e.printStackTrace();
-        } 
+        // try  {
+        //     sentimentWriter = new FileWriter(output+"sentiment.txt");
+        //     sentimentWriter.write("Article, Positive, Negative, Neutral\n");
+        //     data_exploration(fakeFile, "fake", Mode.SENTIMENT);
+        //     data_exploration(trueFile, "true", Mode.SENTIMENT);
+        //     sentimentWriter.close();
+        //     System.out.println("Successfully wrote to: Sentiment.txt");
+        // } catch (IOException e) {
+        //     System.out.printf("Cannot open file: %s\n", sentimentWriter);
+        //     e.printStackTrace();
+        // } 
 
         data_exploration(fakeFile, "fake", Mode.POS);
         data_exploration(trueFile, "true", Mode.POS);
-        write_hashmap_to_file("posLabels.txt", posLabels);
+        write_hashmap_to_file("posLabels.csv", posLabels);
         posLabels.clear();
 
         data_exploration(fakeFile, "fake", Mode.NER);
         data_exploration(trueFile, "true", Mode.NER);
-        write_hashmap_to_file("nerLabels.txt", nerLabels);
+        write_hashmap_to_file("nerLabels.csv", nerLabels);
         nerLabels.clear();
 
         data_exploration(fakeFile, "fake", Mode.NOUNS);
         data_exploration(trueFile, "true", Mode.NOUNS);
-        write_hashmap_to_file("nouns.txt", nouns);
+        write_hashmap_to_file("nouns.csv", nouns);
         nouns.clear();
 
         data_exploration(fakeFile, "fake", Mode.NERNER);
         data_exploration(trueFile, "true", Mode.NERNER);
-        write_hashmap_to_file("nerner.txt", nerner);
+        write_hashmap_to_file("nerner.csv", nerner);
         nerner.clear();
 
         data_exploration(fakeFile, "fake", Mode.ADJ_NN);
         data_exploration(trueFile, "true", Mode.ADJ_NN);
-        write_hashmap_to_file("adj_nn.txt", pos_adj_nn);
+        write_hashmap_to_file("adj_nn.csv", pos_adj_nn);
         pos_adj_nn.clear();
 
         data_exploration(fakeFile, "fake", Mode.PRON_VB);
         data_exploration(trueFile, "true", Mode.PRON_VB);
-        write_hashmap_to_file("pron_vb.txt", pos_pron_vb);
+        write_hashmap_to_file("pron_vb.csv", pos_pron_vb);
         pos_pron_vb.clear();
 
         data_exploration(fakeFile, "fake", Mode.ADV_VB);
         data_exploration(trueFile, "true", Mode.ADV_VB);
-        write_hashmap_to_file("adv_vb.txt", pos_adv_vb);
+        write_hashmap_to_file("adv_vb.csv", pos_adv_vb);
         pos_adv_vb.clear();
     }
 }
