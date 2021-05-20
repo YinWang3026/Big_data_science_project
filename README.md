@@ -6,22 +6,28 @@ Semester long project.
 
 The workspace contains four folders by default, where:
 
-- `src`: the folder to maintain sources - *App*.java is there
-- `data`: the folder to maintain input data
+- `src`: the folder to maintain sources 
+    - *App*.java is there
+- `data`: the folder to maintain input data 
+    - Fake.csv has the original data
+    - Fake_eval.csv has a small list for evaluation
+    - Fake_500.csv has 500 entries
+    - Same applies for True.csv
 - `output`: the folder to maintain output results
-- `rapidminer_src`: the folder containing Rapidminer models
+    - See the output from program below
+- `rapidminer_src`: the folder containing Rapidminer process
 
 ## Running the App
 First build the Java Maven project using the POM file and the src files (keyword_extract.java, keyword_select.java)
 
 Running Keyword Extract
-- java -jar [jar file] [fake_file] [true_fale]
+- java -cp [name.jar] bds.keyword_extract [fake_file] [true_fale]
 - fake_file: Fake_500.csv Fake_eval.csv
 - true_file: True_500.csv True_eval.csv
 - output: posLabels.csv, nerLabels.csv, nouns.csv, nerner.csv, adj_nn.csv, pron_vb.csv, adv_vb.csv
 
 Running Keyword Select
-- java -jar [jar file] [Fake.csv] [True.csv]
+- java -cp [name.jar] bds.keyword_select [fake_file] [true_fale]
 - fake_file: Fake_500.csv Fake_eval.csv
 - true_file: True_500.csv True_eval.csv
 - output: select_result.csv
