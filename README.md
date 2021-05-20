@@ -13,8 +13,12 @@ The workspace contains four folders by default, where:
     - Fake_eval.csv has a small list for evaluation
     - Fake_500.csv has 500 entries
     - Same applies for True.csv
+    - stopwords.txt contains the list of stopwords used
 - `output`: the folder to maintain output results
     - See the output from program below
+    - keyword_extract_500 is my extract result for the 500/500 articles
+    - select_result_500 is the structured matrix
+    - select_result_eval is the matrix for the eval files
 - `rapidminer_src`: the folder containing Rapidminer process
 
 ## Running the App
@@ -36,5 +40,5 @@ RapidMiner
 - Input: select_result.csv
 
 ## GitHub Link
-- In case the original folder is needed
+- In case if the original folder is needed
 - https://github.com/YinWang3026/bds_project
