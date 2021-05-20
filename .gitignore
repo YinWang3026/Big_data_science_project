@@ -2,8 +2,8 @@
 .DS_Store
 .vscode
 .settings
-data/*
-out**/*
 target/*
 *.jar
 *.zip
+*.csv
+*.txt

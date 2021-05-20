@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import com.opencsv.CSVReader; // CSV Reader
-// import com.opencsv.CSVWriter; // CSV Writer
 import com.opencsv.exceptions.CsvException;
 
 import java.util.*; // Properties, Hashmap
@@ -117,23 +116,6 @@ public class keyword_extract {
             List<String> lemmas = sent.lemmas(); // Lemma is the word in dictionary, was => be
             List<String> pos = sent.posTags(); //Parts of speech
             List<String> ner = sent.nerTags(); // Name entity recognition
-            // String sentiment = sent.sentiment().toString(); // Positive Neutral Negative
-
-            // if (m == Mode.SENTIMENT) {
-            //     // System.out.println("Sentiment: " + sentiment);
-            //     switch (sentiment) {
-            //         case "POSITIVE":
-            //             sentimentCounter[0] += 1;
-            //             break;
-            //         case "NEGATIVE":
-            //             sentimentCounter[1] += 1;
-            //             break;
-            //         case "NEUTRAL":
-            //             sentimentCounter[2] += 1;
-            //             break;
-            //     }
-            //     continue;
-            // }
 
             if (tokens.size() != pos.size() && pos.size() != lemmas.size() && lemmas.size() != ner.size()) {
                 System.out.println("FOUND MISMATCH");
@@ -218,14 +200,6 @@ public class keyword_extract {
             }
         }
         
-        // if (m == Mode.SENTIMENT) {
-        //     try {
-        //         sentimentWriter.write(lineNum + "," + sentimentCounter[0] + "," + sentimentCounter[1] + "," + sentimentCounter[2] + "\n");
-        //     } catch (IOException e) {
-        //         System.out.println("Write to file failed: Sentiment.txt");
-        //         e.printStackTrace();            
-        //     }
-        // }
     }
 
     public static void main(String[] args) {
@@ -237,21 +211,8 @@ public class keyword_extract {
             return;
         }
         stopWords = add_to_set(stopwords_file);
-        // stopWords_default = add_to_set(stopwords_def_file);
         String fakeFile = args[0];
         String trueFile = args[1];
-
-        // try  {
-        //     sentimentWriter = new FileWriter(output+"sentiment.txt");
-        //     sentimentWriter.write("Article, Positive, Negative, Neutral\n");
-        //     data_exploration(fakeFile, "fake", Mode.SENTIMENT);
-        //     data_exploration(trueFile, "true", Mode.SENTIMENT);
-        //     sentimentWriter.close();
-        //     System.out.println("Successfully wrote to: Sentiment.txt");
-        // } catch (IOException e) {
-        //     System.out.printf("Cannot open file: %s\n", sentimentWriter);
-        //     e.printStackTrace();
-        // } 
 
         data_exploration(fakeFile, "fake", Mode.POS);
         data_exploration(trueFile, "true", Mode.POS);

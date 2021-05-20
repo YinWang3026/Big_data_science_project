@@ -6,24 +6,29 @@ Semester long project.
 
 The workspace contains four folders by default, where:
 
-- `src`: the folder to maintain sources - App.java is there
-- `lib`: the folder to maintain dependencies - Need to add in the Stanford NLP library to dependencies
+- `src`: the folder to maintain sources - *App*.java is there
 - `data`: the folder to maintain input data
 - `output`: the folder to maintain output results
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+- `rapidminer_src`: the folder containing Rapidminer models
 
 ## Running the App
+First build the Java Maven project using the POM file and the src files (keyword_extract.java, keyword_select.java)
 
-App [inputfile] [algorithm]
-inputfile:  [copy] - use a small sentiment file for testing
-            [nocopy] - use the original sentiment file
-algorithm:  [data_exploration] - Finds top 20 hashtags and @
-            [n_gram] - Finds the 1-4-gram phrases
-            [n_gram_pos] - Finds the 1-4-gram phrases with Parts of Speech
-            [analysis_depparse] - Dependency Parser
-            [analysis_ner] - Name-entity Parser
-            [pos_adjnn] - Finds the 1-4-gram phrases with Parts of Speech with Adj Noun
-            
+Running Keyword Extract
+- java -jar [jar file] [fake_file] [true_fale]
+- fake_file: Fake_500.csv Fake_eval.csv
+- true_file: True_500.csv True_eval.csv
+- output: posLabels.csv, nerLabels.csv, nouns.csv, nerner.csv, adj_nn.csv, pron_vb.csv, adv_vb.csv
+
+Running Keyword Select
+- java -jar [jar file] [Fake.csv] [True.csv]
+- fake_file: Fake_500.csv Fake_eval.csv
+- true_file: True_500.csv True_eval.csv
+- output: select_result.csv
+
+RapidMiner
+- Input: select_result.csv
+
+## GitHub Link
+- In case the original folder is needed
+- https://github.com/YinWang3026/bds_project
