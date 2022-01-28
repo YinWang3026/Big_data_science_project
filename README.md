@@ -39,6 +39,5 @@ Running Keyword Select
 RapidMiner
 - Input: select_result.csv
 
-## GitHub Link
-- In case if the original folder is needed
-- https://github.com/YinWang3026/bds_project
+## Project Report
+- [Project Report](https://docs.google.com/document/d/1kWWJnzvEDTlZO-q0wirMyT9jcDlKIreICfGTnDfAbw4/edit?usp=sharing)
